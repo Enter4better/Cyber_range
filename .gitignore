@@ -1,0 +1,33 @@
+# Python 虚拟环境
+venv/
+.venv/
+env/
+
+# 日志与临时文件
+*.log
+*.pyc
+__pycache__/
+*.tmp
+
+# Vagrant 虚拟机目录（每个会话独立，体积大）
+vms/
+
+# 本地配置文件（可能含敏感信息）
+.env
+config_local.py
+
+# IDE 配置文件
+.vscode/
+.idea/
+
+# 操作系统生成文件
+.DS_Store
+Thumbs.db
+
+# 数据库文件
+*.db
+*.sqlite
+
+# 测试与输出
+test_output/
+coverage/
