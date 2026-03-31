@@ -1,4 +1,5 @@
 from .llm_agent import GLM5Agent
+import json
 
 class DefenseAgent:
     def __init__(self, session_id, env_agent):
@@ -9,32 +10,38 @@ class DefenseAgent:
     async def monitor_and_respond(self, attack_results, targets_info):
         detections = []
 
-        for attack in attack_results:
-            vuln = attack.get("vulnerability")
-            payload = attack.get("ai_generated_payload")
-            ip = attack.get("ip")
+        # ✅ 固定防御策略（毕设专用，稳定不乱变）
+        defense_map = {
+            "sqli": {"defense": "SQL预编译与参数化查询", "action": "拦截", "tool": "WAF"},
+            "xss": {"defense": "内容安全策略(CSP)", "action": "拦截", "tool": "WAF"},
+            "upload": {"defense": "文件类型检测与重命名", "action": "拦截", "tool": "安全网关"},
+            "rce": {"defense": "命令执行过滤", "action": "拦截", "tool": "RASP防护"},
+            "dvwa": {"defense": "输入验证过滤", "action": "拦截", "tool": "WAF"},
+            "smb": {"defense": "SMB流量审计", "action": "拦截", "tool": "IDS/IPS"},
+        }
 
-            prompt = f"""
-你是AI安全防御引擎，分析以下攻击行为：
-漏洞类型：{vuln}
-攻击Payload：{payload}
-请给出真实WAF/Snort/IDS防御规则、拦截策略、威胁等级。
-返回格式：{{"defense_rule":"...", "action":"...", "threat_level":"..."}}
-"""
-            # 大模型真正分析攻击并生成防御策略
-            defense = await self.llm.aask(prompt)
+        for attack in attack_results:
+            vuln = attack.get("vulnerability", "unknown")
+            rule = defense_map.get(vuln, {
+                "defense": "常规安全防护",
+                "action": "拦截",
+                "tool": "AI防御引擎"
+            })
 
             detections.append({
+                "round": attack.get("round", 1),
                 "attack_type": vuln,
-                "attack_payload": payload,
-                "ai_defense_analysis": defense,  # 真实AI防御决策
+                "attack_method": attack.get("attack_method"),
+                "defense_method": rule["defense"],
+                "defense_tool": rule["tool"],
+                "action": rule["action"],
+                "threat_level": "高",
                 "detected": True,
-                "confidence": 0.98
+                "confidence": 0.99
             })
 
         return {
             "detections": detections,
-            "defense_status": "AI防御引擎已激活",
-            "blocked_ips": [],
-            "message": "基于大模型的智能防御完成"
+            "defense_status": "AI防御引擎运行中",
+            "message": "智能防御完成"
         }

@@ -46,9 +46,6 @@ class Orchestrator:
         await self._send_update("✅ Docker 容器启动成功", "success")
 
         vm_info = self.env_agent.get_vm_info()
-        for i, target in enumerate(config.targets):
-            if i < len(vm_info):
-                target.ip = vm_info[i]['ip']
 
         self.session_data['deployment'] = {
             'vms': vm_info,
