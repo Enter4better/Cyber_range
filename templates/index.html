@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI 智能攻防靶场 - 控制台</title>
+    <link rel="stylesheet" href="/static/css/dark.css" />
+  </head>
+  <body class="dark-theme">
+    <div class="layout">
+      <!-- 侧边栏 -->
+      <div class="sidebar">
+        <h2 class="logo">AI Range</h2>
+        <ul class="menu">
+          <li class="active">控制台</li>
+          <li>靶场管理</li>
+          <li>攻防日志</li>
+          <li>网络拓扑</li>
+          <li>系统设置</li>
+        </ul>
+      </div>
+
+      <!-- 主内容 -->
+      <div class="main">
+        <div class="header">
+          <h1>智能攻防控制台</h1>
+          <div class="stats">
+            <div class="card">轮次：<span id="round">0</span></div>
+            <div class="card">攻击：<span id="atk">0</span></div>
+            <div class="card">防御：<span id="def">0</span></div>
+            <div class="card">威胁：<span id="threat">高</span></div>
+          </div>
+        </div>
+
+        <!-- 按钮区 -->
+        <div class="control-bar">
+          <button class="btn success" onclick="generate()">生成靶场</button>
+          <button class="btn attack" onclick="attack()">发起攻击</button>
+          <button class="btn defense" onclick="defense()">启动防御</button>
+          <button class="btn auto" onclick="autoAttack()">自动攻防</button>
+        </div>
+
+        <!-- 日志区域 -->
+        <div class="log-panel">
+          <div id="log"></div>
+        </div>
+
+        <!-- 拓扑图区域 -->
+        <div class="topo" id="topo">网络拓扑将在这里显示</div>
+      </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

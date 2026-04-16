@@ -31,3 +31,4 @@ Thumbs.db
 # 测试与输出
 test_output/
 coverage/
+node_modules

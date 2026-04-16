@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui;
+  background: #0b101b;
+  color: #e0e0e0;
+}
+
+.dark-theme {
+  background: #0b101b;
+  color: #cdd6f4;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #111827;
+  padding: 20px;
+  border-right: 1px solid #1f2937;
+}
+.logo {
+  color: #38bdf8;
+  margin-bottom: 20px;
+}
+.menu li {
+  padding: 12px 10px;
+  margin: 4px 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.menu li.active {
+  background: #1e293b;
+  color: #38bdf8;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.stats {
+  display: flex;
+  gap: 12px;
+}
+.card {
+  background: #1e293b;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  border: 1px solid #334155;
+}
+
+.control-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn.success {
+  background: #10b981;
+  color: white;
+}
+.btn.attack {
+  background: #ef4444;
+  color: white;
+}
+.btn.defense {
+  background: #3b82f6;
+  color: white;
+}
+.btn.auto {
+  background: #8b5cf6;
+  color: white;
+}
+
+.log-panel {
+  background: #0f172a;
+  border-radius: 10px;
+  height: 340px;
+  padding: 16px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.topo {
+  background: #0f172a;
+  border-radius: 10px;
+  height: 260px;
+  padding: 20px;
+  border: 1px solid #1e293b;
+}
